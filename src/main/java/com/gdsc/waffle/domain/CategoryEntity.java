@@ -1,13 +1,12 @@
 package com.gdsc.waffle.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -18,7 +17,9 @@ public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Category_id;
+    private int categoryId;
 
-    private String Category_name;
+    @Column
+    @NotNull
+    private String categoryName;
 }
