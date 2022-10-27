@@ -1,5 +1,6 @@
 package com.gdsc.waffle.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,12 +21,18 @@ public class TodoEntity {
     private Integer id;
 
     @Column
+    @NotNull
     private LocalDate start_Date;
 
     @Column
+    @NotNull
     private LocalDate end_Date;
 
+    @Column
+    @NotNull
     private String content;
 
+    @Column
+    @NotNull
     private Boolean status;
 }
