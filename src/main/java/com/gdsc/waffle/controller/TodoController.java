@@ -1,73 +1,64 @@
 package com.gdsc.waffle.controller;
 
 import com.gdsc.waffle.domain.TodoEntity;
-import com.gdsc.waffle.dto.TodoRequest;
-import com.gdsc.waffle.dto.TodoResponse;
 import com.gdsc.waffle.service.TodoService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin
 @AllArgsConstructor
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/todos")
 public class TodoController {
 
     private final TodoService todoService;
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getTodos() {
+        List<TodoEntity> todos = todoService.findTodoList(Sort.by(Sort.Direction.ASC, "id"));
+        return ResponseEntity.ok(todos);
+    }
+
+    /*
+     * 	등록
+     */
     @PostMapping
-    public ResponseEntity<TodoResponse> create(@RequestBody TodoRequest request) {
-        System.out.println("CREATE");
-
-        if (ObjectUtils.isEmpty(request.getContent())) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        if (ObjectUtils.isEmpty(request.getStatus())) {
-            request.setStatus(false);
-        }
-
-        TodoEntity result = this.todoService.add(request);
-
-        return ResponseEntity.ok(new TodoResponse(result));
+    public ResponseEntity<String> postTodo(@RequestBody TodoEntity todoEntity) {
+        todoEntity.setCreatedDateTime(LocalDateTime.now());
+        todoEntity.setStatus(false);
+        todoService.addTodoList(todoEntity);
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<TodoResponse> readOne(@PathVariable Integer id) {
-        TodoEntity result = this.todoService.searchById(id);
+    /*
+     * 	수정
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<String> putTodo(@PathVariable("id") Integer id) {
+        TodoEntity todoEntity = todoService.findById(id);
 
-        return ResponseEntity.ok(new TodoResponse(result));
+        Boolean isComplete = !todoEntity.getStatus();
+        todoEntity.setStatus(isComplete);
+        todoService.addTodoList(todoEntity);
+
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<List<TodoResponse>> readAll() {
-        List<TodoEntity> resultList = this.todoService.searchAll();
-        List<TodoResponse> response = resultList.stream().map(TodoResponse::new)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(response);
+    /*
+     * 	삭제
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTodo(@PathVariable("id") Integer id) {
+        todoService.deleteTodoList(id);
+
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
 
-    @PatchMapping("{id}")
-    public ResponseEntity<TodoResponse> update(@PathVariable Integer id, @RequestBody TodoRequest todoDTO) {
-        TodoEntity result = this.todoService.updateById(id, todoDTO);
-
-        return ResponseEntity.ok(new TodoResponse(result));
-    }
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<?> removeOne(@PathVariable Integer id) {
-        this.todoService.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping
-    public ResponseEntity<?> removeAll() {
-        this.todoService.deleteAll();
-        return ResponseEntity.ok().build();
-    }
 }
