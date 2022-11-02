@@ -1,19 +1,17 @@
 package com.gdsc.waffle.domain;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class TodoEntity {
 
     @Id
@@ -22,11 +20,7 @@ public class TodoEntity {
 
     @Column
     @NotNull
-    private LocalDate start_Date;
-
-    @Column
-    @NotNull
-    private LocalDate end_Date;
+    private LocalDateTime createdDateTime;
 
     @Column
     @NotNull
