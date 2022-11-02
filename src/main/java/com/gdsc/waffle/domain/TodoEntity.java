@@ -4,15 +4,13 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Builder
-@Data
 public class TodoEntity {
 
     @Id
@@ -20,12 +18,8 @@ public class TodoEntity {
     private Integer id;
 
     @Column
-    //@NotNull
-    private LocalDate start_Date;
-
-    @Column
-    //@NotNull
-    private LocalDate end_Date;
+    @NotNull
+    private LocalDateTime createdDateTime;
 
     @Column
     @NotNull
