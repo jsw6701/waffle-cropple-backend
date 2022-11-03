@@ -38,7 +38,7 @@ public class TodoController {
     }
 
     /*
-     * 	수정
+     * 	상태 표시 변경
      */
     @PutMapping("/{id}")
     public ResponseEntity<String> putTodo(@PathVariable("id") Integer id) {
