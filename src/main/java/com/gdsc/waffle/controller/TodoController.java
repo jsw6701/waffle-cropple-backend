@@ -3,6 +3,7 @@ package com.gdsc.waffle.controller;
 import com.gdsc.waffle.domain.TodoEntity;
 import com.gdsc.waffle.service.TodoService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,8 +19,12 @@ import java.util.List;
 @RequestMapping("/api/todos")
 public class TodoController {
 
+    @Autowired
     private final TodoService todoService;
 
+    /*
+     *     목록 조회
+     */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getTodos() {
         List<TodoEntity> todos = todoService.findTodoList(Sort.by(Sort.Direction.ASC, "id"));
@@ -46,6 +51,18 @@ public class TodoController {
 
         Boolean isComplete = !todoEntity.getStatus();
         todoEntity.setStatus(isComplete);
+        todoService.addTodoList(todoEntity);
+
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+    }
+
+    /*
+     * 	내용 수정
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateTodo(@PathVariable("id") Integer id, @RequestBody TodoEntity todoEntity) {
+        todoEntity.setId(id);
+
         todoService.addTodoList(todoEntity);
 
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
