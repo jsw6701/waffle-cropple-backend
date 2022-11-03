@@ -61,9 +61,10 @@ public class TodoController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<String> updateTodo(@PathVariable("id") Integer id, @RequestBody TodoEntity todoEntity) {
-        todoEntity.setId(id);
+        TodoEntity todoEntity1 = todoService.findById(id);
 
-        todoService.addTodoList(todoEntity);
+        todoEntity1.setContent(todoEntity.getContent());
+        todoService.addTodoList(todoEntity1);
 
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
