@@ -59,7 +59,7 @@ public class TodoController {
     /*
      * 	내용 수정
      */
-    @PutMapping("/{id}")
+/*    @PutMapping("/{id}")
     public ResponseEntity<String> updateTodo(@PathVariable("id") Integer id, @RequestBody TodoEntity todoEntity) {
         TodoEntity todoEntity1 = todoService.findById(id);
 
@@ -67,7 +67,7 @@ public class TodoController {
         todoService.addTodoList(todoEntity1);
 
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
-    }
+    }*/
 
     /*
      * 	삭제
