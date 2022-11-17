@@ -45,8 +45,8 @@ public class TodoController {
     /*
      * 	상태 표시 변경
      */
-    @PutMapping("{id}")
-    public ResponseEntity<String> putTodo(@PathVariable("id") Integer id) {
+    @PatchMapping("{id}")
+    public ResponseEntity<String> updateTodo(@PathVariable("id") Integer id) {
         TodoEntity todoEntity = todoService.findById(id);
 
         Boolean isComplete = !todoEntity.getStatus();
@@ -59,8 +59,8 @@ public class TodoController {
     /*
      * 	내용 수정
      */
-    @PutMapping("modify/{id}")
-    public ResponseEntity<String> updateTodo(@PathVariable("id") Integer id, @RequestBody TodoEntity todoEntity) {
+    @PutMapping("{id}")
+    public ResponseEntity<String> putTodo(@PathVariable("id") Integer id, @RequestBody TodoEntity todoEntity) {
         TodoEntity todoEntity1 = todoService.findById(id);
 
         todoEntity1.setContent(todoEntity.getContent());
@@ -72,7 +72,7 @@ public class TodoController {
     /*
      * 	삭제
      */
-    @DeleteMapping("/todo/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTodo(@PathVariable("id") Integer id) {
         todoService.deleteTodoList(id);
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
