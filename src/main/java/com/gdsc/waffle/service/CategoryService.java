@@ -28,10 +28,10 @@ public class CategoryService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-
     public List<CategoryEntity> searchAll(){
         return this.categoryRepository.findAll();
     }
+
 
     public CategoryEntity updateById(Long categoryId, CategoryRequest request){
         CategoryEntity categoryEntity = this.searchById(categoryId);
