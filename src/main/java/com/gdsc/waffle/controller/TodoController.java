@@ -25,7 +25,7 @@ public class TodoController {
     /*
      *     목록 조회
      */
-    @GetMapping(value = "/todo", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getTodos() {
         List<TodoEntity> todos = todoService.findTodoList(Sort.by(Sort.Direction.ASC, "id"));
         return ResponseEntity.ok(todos);
@@ -34,7 +34,7 @@ public class TodoController {
     /*
      * 	등록
      */
-    @PostMapping("/todo")
+    @PostMapping
     public ResponseEntity<String> postTodo(@RequestBody TodoEntity todoEntity) {
         todoEntity.setCreatedDateTime(LocalDateTime.now());
         todoEntity.setStatus(false);
@@ -45,7 +45,7 @@ public class TodoController {
     /*
      * 	상태 표시 변경
      */
-    @PutMapping("/todo/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<String> putTodo(@PathVariable("id") Integer id) {
         TodoEntity todoEntity = todoService.findById(id);
 
@@ -59,7 +59,7 @@ public class TodoController {
     /*
      * 	내용 수정
      */
-    @PutMapping("/todo/modify/{id}")
+    @PutMapping("modify/{id}")
     public ResponseEntity<String> updateTodo(@PathVariable("id") Integer id, @RequestBody TodoEntity todoEntity) {
         TodoEntity todoEntity1 = todoService.findById(id);
 
