@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Builder
+@Table(name = "todos")
 public class TodoEntity {
 
     @Id
@@ -29,4 +30,8 @@ public class TodoEntity {
     @Column
     @NotNull
     private Boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private CategoryEntity categoryEntity;
 }

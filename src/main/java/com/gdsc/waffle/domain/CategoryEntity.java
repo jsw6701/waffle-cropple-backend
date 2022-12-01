@@ -1,10 +1,11 @@
 package com.gdsc.waffle.domain;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,7 +13,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Builder
-
 public class CategoryEntity {
 
     @Id
@@ -24,4 +24,6 @@ public class CategoryEntity {
     @NotNull
     private String categoryTitle;
 
+    @OneToMany(mappedBy = "categoryEntity")
+    private List<TodoEntity> todoEntityList = new ArrayList<>();
 }
