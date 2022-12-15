@@ -23,11 +23,6 @@ public class TodoServiceImpl implements TodoService{
         todoRepository.save(todoEntity);
     }
 
-    @Override
-    public TodoEntity updateTodoList(TodoEntity todoDTO) {
-        return null;
-    }
-
     public List<TodoEntity> findTodoList(Sort sort){
         return todoRepository.findAll(sort);
     }
