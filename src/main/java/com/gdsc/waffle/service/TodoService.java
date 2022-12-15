@@ -12,8 +12,6 @@ public interface TodoService {
 
     void addTodoList(TodoEntity todoEntity);
 
-    TodoEntity updateTodoList(TodoEntity todoEntity);
-
     void deleteTodoList(Integer id);
 
     List<TodoEntity> findTodoList(Sort sort);
