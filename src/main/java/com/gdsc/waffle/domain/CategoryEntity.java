@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Builder
+@Table(name = "categorys")
 public class CategoryEntity {
 
     @Id
@@ -24,6 +25,10 @@ public class CategoryEntity {
     @NotNull
     private String categoryTitle;
 
-    @OneToMany(mappedBy = "categoryEntity")
-    private List<TodoEntity> todoEntityList = new ArrayList<>();
+    //@OneToMany(mappedBy = "categoryEntity")
+    //private List<TodoEntity> todoEntityList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "todo")
+    private TodoEntity todoEntity;
 }

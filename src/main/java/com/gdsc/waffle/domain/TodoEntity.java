@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table(name = "todos")
+//@Table(name = "todos")
 public class TodoEntity {
 
     @Id
@@ -31,7 +33,10 @@ public class TodoEntity {
     @NotNull
     private Boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "category")
-    private CategoryEntity categoryEntity;
+    //@ManyToOne
+    //@JoinColumn(name = "category")
+    //private CategoryEntity categoryEntity;
+
+    @OneToMany(mappedBy = "todoEntity")
+    private List<CategoryEntity> categoryEntityList = new ArrayList<>();
 }
