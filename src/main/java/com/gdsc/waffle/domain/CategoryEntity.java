@@ -26,7 +26,6 @@ public class CategoryEntity {
     private String categoryTitle;
 
     @OneToMany(mappedBy = "categoryEntity")
-    @JsonIgnore
     private List<TodoEntity> todoEntityList = new ArrayList<>();
 
 }
