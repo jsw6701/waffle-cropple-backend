@@ -1,12 +1,11 @@
 package com.gdsc.waffle.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -14,9 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Builder
-//@Table(name = "todos")
+@Table(name = "todos")
 public class TodoEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,10 +31,8 @@ public class TodoEntity {
     @NotNull
     private Boolean status;
 
-    //@ManyToOne
-    //@JoinColumn(name = "category")
-    //private CategoryEntity categoryEntity;
-
-    @OneToMany(mappedBy = "todoEntity")
-    private List<CategoryEntity> categoryEntityList = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "category")
+    @JsonIgnore
+    private CategoryEntity categoryEntity;
 }

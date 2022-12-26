@@ -1,9 +1,9 @@
 package com.gdsc.waffle.controller;
 
 import com.gdsc.waffle.domain.TodoEntity;
+import com.gdsc.waffle.service.CategoryService;
 import com.gdsc.waffle.service.TodoService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,8 +19,9 @@ import java.util.List;
 @RequestMapping("/api/todos")
 public class TodoController {
 
-    @Autowired
     private final TodoService todoService;
+
+    private final CategoryService categoryService;
 
     /*
      *     목록 조회
@@ -34,10 +35,11 @@ public class TodoController {
     /*
      * 	등록
      */
-    @PostMapping
-    public ResponseEntity<String> postTodo(@RequestBody TodoEntity todoEntity) {
+    @PostMapping("{categoryId}")
+    public ResponseEntity<String> postTodo(@RequestBody TodoEntity todoEntity, @PathVariable Long categoryId) {
         todoEntity.setCreatedDateTime(LocalDateTime.now());
         todoEntity.setStatus(false);
+        todoEntity.setCategoryEntity(categoryService.searchById(categoryId));
         todoService.addTodoList(todoEntity);
         return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
     }
