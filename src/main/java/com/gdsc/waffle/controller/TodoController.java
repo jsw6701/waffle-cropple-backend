@@ -29,6 +29,10 @@ public class TodoController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getTodos() {
         List<TodoEntity> todos = todoService.findTodoList(Sort.by(Sort.Direction.ASC, "id"));
+        for (TodoEntity l: todos
+             ) {
+            System.out.println(l);
+        }
         return ResponseEntity.ok(todos);
     }
 

@@ -33,6 +33,5 @@ public class TodoEntity {
 
     @ManyToOne
     @JoinColumn(name = "category")
-    @JsonIgnore
     private CategoryEntity categoryEntity;
 }
