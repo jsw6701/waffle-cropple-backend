@@ -45,11 +45,12 @@
 
 매주 1회 스크럼을 가졌다.
 
-![Untitled 1](https://user-images.githubusercontent.com/86887824/223120609-82f86fe0-d12a-4007-9f68-bd0d0db4d523.png)
+![Untitled](https://user-images.githubusercontent.com/86887824/223120888-2eeb37eb-7f0c-49a1-ad33-dc61d2fbf5f4.png)
+
 
 처음에는 내가 뭘 할 수 있고 이 사람들이랑 어떻게 일을 분담하고…막 정말 정신없었다 그래서 1차 혼돈의 카오스..스크럼이 되었다
 
-<img width="1441" alt="Untitled 2" src="https://user-images.githubusercontent.com/86887824/223120635-707677e4-5513-4021-9cc0-50775b459914.png">
+![Untitled 1](https://user-images.githubusercontent.com/86887824/223120904-744d8b9a-fed3-4cf5-a034-01894097d2d9.png)
 
 ---
 
@@ -94,14 +95,14 @@
 
 ## API
 
-![Untitled 3](https://user-images.githubusercontent.com/86887824/223120691-814c5418-f719-4021-b835-4b65a8fb3ea4.png)
+<img width="1441" alt="Untitled 2" src="https://user-images.githubusercontent.com/86887824/223120991-05e64651-7ee1-46f6-97f5-8e8a631146aa.png">
 
 ## 스키마
 
-![Untitled 4](https://user-images.githubusercontent.com/86887824/223120699-dd3ca003-910d-42a1-97e8-b5db438c174b.png)
+![Untitled 3](https://user-images.githubusercontent.com/86887824/223120963-7fc2740c-963a-4311-a00b-6c1601111b5f.png)
 
 카테고리엔티티 스키마
 
-![Untitled](https://user-images.githubusercontent.com/86887824/223120719-75529e53-e863-4525-8e9b-71602c88919a.png)
+![Untitled 4](https://user-images.githubusercontent.com/86887824/223120980-47ff4892-e338-4dab-961d-19475afe223a.png)
 
 투두엔터티 스키마
